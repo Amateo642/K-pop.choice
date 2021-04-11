@@ -1,0 +1,26 @@
+{
+  "name": "K-pop.choice",
+  "version": "1.0.0",
+  "description": "Vote",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass scss/style.scss css/style.css",
+    "scss-watch": "node-sass -w scss/style.scss css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amateo642/K-pop.choice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amateo642/K-pop.choice/issues"
+  },
+  "homepage": "https://github.com/Amateo642/K-pop.choice#readme",
+  "dependencies": {
+    "node-sass": "^5.0.0",
+    "normalize.css": "^8.0.1"
+  }
+}
