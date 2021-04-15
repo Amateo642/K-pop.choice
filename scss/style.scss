@@ -3,5 +3,16 @@
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.image-card {
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+  cursor: pointer;
+
+  & + & {
+    margin-left: 10px;
+  }
 }
