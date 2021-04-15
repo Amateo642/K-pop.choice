@@ -4,6 +4,7 @@ export class Controller {
         this.view = view;
         this.view.onGameStart(this.startGame.bind(this));
         this.view.onGirlChoose(this.chooseGirl.bind(this));
+        this.view.onShowLeaders(this.showLeaders.bind(this));
         this.view.renderGreetings();
     }
 
@@ -21,5 +22,10 @@ export class Controller {
     chooseGirl(winner) {
         this.model.setWinner(winner);
         this.startGame();
+    }
+
+    showLeaders() {
+        const leaders = this.model.getLeaders();
+        this.view.renderLeaders(leaders);
     }
 }

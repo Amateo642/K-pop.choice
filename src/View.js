@@ -54,6 +54,41 @@ export class View {
         image1.src = winner.url;
         image1.className = 'image-card';
         this.appEl.appendChild(image1); 
+
+        const button = document.createElement('button');
+        button.innerText = 'Список лидеров';
+        this.appEl.appendChild(button);
+
+        button.addEventListener('click', () => {
+            this.handleShowLeaders();
+        });
+    }
+
+    renderLeaders(leaders) {
+        this.appEl.innerHTML = '';
+
+        const text = document.createElement('p');
+        text.innerText = 'Текущие лидеры';
+        this.appEl.appendChild(text);
+
+        leaders.forEach(girl => {
+            const leaderBlock = document.createElement('div');
+
+            const image = document.createElement('img');
+            image.src = girl.url;
+            image.className = 'image-leader';
+            leaderBlock.appendChild(image); 
+
+            const name = document.createElement('p');
+            name.innerText = girl.name;
+            leaderBlock.appendChild(name);
+
+            const voices = document.createElement('p');
+            voices.innerText = girl.voices;
+            leaderBlock.appendChild(voices);
+
+            this.appEl.appendChild(leaderBlock);
+        });
     }
 
     onGameStart(cb) {
@@ -62,5 +97,9 @@ export class View {
 
     onGirlChoose(cb) {
         this.handleGirlChoose = cb;
+    }
+
+    onShowLeaders(cb) {
+        this.handleShowLeaders = cb;
     }
 }
