@@ -21,15 +21,25 @@ export class View {
         this.appEl.innerHTML = '';
         const [girl1, girl2] = pair; 
 
+        const imageWrapper = document.createElement('div');
+        imageWrapper.className = 'image-wrapper';
+
         const image1 = document.createElement('img');
         image1.src = girl1.url;
         image1.className = 'image-card';
-        this.appEl.appendChild(image1);  
+        imageWrapper.appendChild(image1);
+
+        const vsImage = document.createElement('img')
+        vsImage.src = 'assets/vs.png';
+        vsImage.className = 'image-vs';
+        imageWrapper.appendChild(vsImage);
 
         const image2 = document.createElement('img');
         image2.src = girl2.url;
         image2.className = 'image-card';
-        this.appEl.appendChild(image2);  
+        imageWrapper.appendChild(image2); 
+
+        this.appEl.appendChild(imageWrapper);  
 
         const text = document.createElement('p');
         text.innerText = 'Отдайте свой голос.';

@@ -6,19 +6,61 @@
   box-sizing: border-box;
 }
 
-.image-card {
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex: 0 0 100px;
+  background: #000;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
+  min-height: 300px;
+}
+
+.main > div {
+  text-align: center;
+  border: 2px solid black;
+}
+
+.image-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.image-vs {
   height: 300px;
-  width: 300px;
+}
+
+.image-card {
+  height: 600px;
+  width: 600px;
   object-fit: cover;
   cursor: pointer;
 
-  & + & {
+  /*& + & {
     margin-left: 10px;
-  }
+  }*/
 }
 
 .image-leader {
   height: 100px;
   width: 100px;
   object-fit: cover;
+}
+
+.footer {
+  flex: 0 0 100px;
+  background: #000;
 }

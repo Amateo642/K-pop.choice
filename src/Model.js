@@ -1,10 +1,9 @@
+import {db} from './db';
+
 export class Model {
-    constructor(db) {
-        this.db = db.map(girl => {
-            girl.voices = 0;
-            return girl;
-        });
-        this.girls = [...db];
+    constructor() {
+        this.db = this.load();
+        this.girls = [...this.db];
         this.winners = [];
     }
 
@@ -13,10 +12,11 @@ export class Model {
     }
 
     setWinner(winner) {
-        if(winner) {
+        if (winner) {
             winner.voices += 10;
             this.winners.push(winner);
             this.girls.splice(0,2);
+            this.save();
         } 
     }
 
@@ -46,5 +46,23 @@ export class Model {
             if (girl1.voices === girl2.voices) return 0;
             if (girl1.voices < girl2.voices) return 1;
         }).slice(0, 3);
+    }
+
+    load() {
+        const localdb = localStorage.getItem('db');
+        // Получили базу из ЛС если база есть, тогда вернуть ее, если ее нет (возвращает значение нулл)вернуть ДБ из файла.
+        if (localdb) {
+            return JSON.parse(localdb);
+        } else {
+            return db.map(girl => {
+                girl.voices = 0;
+                return girl;
+            });
+        }
+    }
+
+    save() {
+        localStorage.setItem('db', JSON.stringify(this.db));
+        console.log(JSON.parse(localStorage.getItem('db')));
     }
 }
