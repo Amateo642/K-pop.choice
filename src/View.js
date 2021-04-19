@@ -20,23 +20,24 @@ export class View {
     renderGame(pair) {
         this.appEl.innerHTML = '';
         const [girl1, girl2] = pair; 
+        document.querySelector('.main').className = 'main gradient';
 
         const imageWrapper = document.createElement('div');
         imageWrapper.className = 'image-wrapper';
 
         const image1 = document.createElement('img');
         image1.src = girl1.url;
-        image1.className = 'image-card';
+        image1.className = 'image-card animate__animated animate__fadeInLeft animate__delay-1s';
         imageWrapper.appendChild(image1);
 
         const vsImage = document.createElement('img')
         vsImage.src = 'assets/vs.png';
-        vsImage.className = 'image-vs';
+        vsImage.className = 'image-vs animate__animated animate__zoomIn';
         imageWrapper.appendChild(vsImage);
 
         const image2 = document.createElement('img');
         image2.src = girl2.url;
-        image2.className = 'image-card';
+        image2.className = 'image-card animate__animated animate__fadeInRight animate__delay-1s';
         imageWrapper.appendChild(image2); 
 
         this.appEl.appendChild(imageWrapper);  
@@ -45,11 +46,22 @@ export class View {
         text.innerText = 'Отдайте свой голос.';
         this.appEl.appendChild(text);
 
-        image1.addEventListener('click', () => {
-            this.handleGirlChoose(girl1);
+        const handleClick = (winner, winnerImage, loserImage) => {
+            setTimeout(() => {
+                this.handleGirlChoose(winner);
+            }, 1000);
+            winnerImage.className = 'image-card animate__animated animate__fadeOutUp';
+            loserImage.className = 'image-card animate__animated animate__fadeOutDown';
+            vsImage.className = 'image-vs animate__animated animate__zoomOut';
+        };
+
+        image1.addEventListener('click', function cb() {
+            handleClick(girl1, image1, image2);
+            image1.removeEventListener('click', cb);
         });
-        image2.addEventListener('click', () => {
-            this.handleGirlChoose(girl2);
+        image2.addEventListener('click', function cb() {
+            handleClick(girl2, image2, image1);
+            image2.removeEventListener('click', cb);
         });
     }
 
@@ -62,7 +74,7 @@ export class View {
 
         const image1 = document.createElement('img');
         image1.src = winner.url;
-        image1.className = 'image-card';
+        image1.className = 'image-winner animate__animated animate__jackInTheBox';
         this.appEl.appendChild(image1); 
 
         const button = document.createElement('button');
@@ -86,7 +98,7 @@ export class View {
 
             const image = document.createElement('img');
             image.src = girl.url;
-            image.className = 'image-leader';
+            image.className = 'image-leader animate__animated animate__flipInX';
             leaderBlock.appendChild(image); 
 
             const name = document.createElement('p');
