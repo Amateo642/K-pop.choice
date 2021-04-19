@@ -19,7 +19,11 @@ module.exports = {
             'css-loader',
             'sass-loader',
          ]
-      }]
+      }, {
+         test: /\.(png|jpe?g|gif)$/i,
+         type: 'asset/resource'
+      }
+   ]
    },
    plugins: [
       new miniCss({
