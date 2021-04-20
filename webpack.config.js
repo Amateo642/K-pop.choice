@@ -2,7 +2,7 @@ const path = require('path');
 const miniCss = require('mini-css-extract-plugin');
 const copyPlugin = require('copy-webpack-plugin');
 
-module.exports = {
+const config = {
     entry: './src/index',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -11,7 +11,6 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, 'public'),
     },
-    devtool: 'inline-source-map',
     module: {
       rules: [{
          test:/\.(s*)css$/,
@@ -40,4 +39,11 @@ module.exports = {
          }]
       })
    ]
+};
+
+module.exports = (env, argv) => {
+   if (argv.mode === 'development') {
+      config.devtool = 'inline-source-map';
+   }
+   return config;
 };
