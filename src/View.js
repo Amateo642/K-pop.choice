@@ -93,8 +93,12 @@ export class View {
         text.innerText = 'Текущие лидеры';
         this.appEl.appendChild(text);
 
+        const leadersBlock = document.createElement('div'); 
+        leadersBlock.className = 'leaders-block';
+
         leaders.forEach(girl => {
             const leaderBlock = document.createElement('div');
+            leaderBlock.className = 'leader-block';
 
             const image = document.createElement('img');
             image.src = girl.url;
@@ -109,8 +113,10 @@ export class View {
             voices.innerText = girl.voices;
             leaderBlock.appendChild(voices);
 
-            this.appEl.appendChild(leaderBlock);
+            leadersBlock.appendChild(leaderBlock);
         });
+
+         this.appEl.appendChild(leadersBlock);
     }
 
     onGameStart(cb) {

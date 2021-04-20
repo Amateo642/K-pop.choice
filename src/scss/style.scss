@@ -1,5 +1,6 @@
 @import "normalize.css";
 @import "animate.css";
+@import "mixins";
 
 *,
 *::after,
@@ -19,7 +20,7 @@ body {
 }
 
 .header {
-  flex: 0 0 200px;
+  flex: 0 0 230px;
   background: url("../assets/footer.jpg") center/ cover;
 }
 
@@ -29,7 +30,7 @@ body {
   align-items: center;
   flex: 1 0 auto;
   min-height: 300px;
-   background: url("../assets/main-1.jpg") no-repeat center / contain;
+   background: url("../assets/main-1.jpg") no-repeat bottom center / cover;
 }
 
 .main.gradient {
@@ -41,17 +42,20 @@ body {
 }
 
 .main p {
-  font-size: 20px;
-  color: #66599f;
+  @include text-background;
+  font-size: 30px;
 }
 
 .main button {
-  background: linear-gradient(to right, #e3effb, #66599f);
+  @include text-background;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
   border: none;
-  border-radius: 10px;
-  padding: 10px;
   cursor: pointer;
 }
+
+// game screen
 
 .image-wrapper {
   display: flex;
@@ -68,11 +72,9 @@ body {
   object-fit: cover;
   cursor: pointer;
   border-radius: 5px;
-
-  /*& + & {
-    margin-left: 10px;
-  }*/
 }
+
+// winner screen
 
 .image-winner {
   height: 400px;
@@ -80,6 +82,18 @@ body {
   border-radius: 50%;
   text-align: center;
   object-fit: cover;
+}
+
+// leaders screen
+
+.leaders-block {
+  display: flex;
+  justify-content: space-between;
+  width: 642px;
+}
+
+.leader-block {
+  width: 200px;
 }
 
 .image-leader {
