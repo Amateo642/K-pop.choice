@@ -7,6 +7,10 @@ export class Model {
         this.winners = [];
     }
 
+    getCard() {
+        return this.girls;
+    }
+
     getPair() {
         return this.isNextPairExist() ? [this.girls[0], this.girls[1]] : undefined;
     }
