@@ -24,6 +24,51 @@ body {
   background: url("../assets/footer.jpg") center/ cover;
 }
 
+.navbar {
+  overflow: hidden;
+}
+
+.navbar a {
+  @include text-background;
+  float: left;
+  font-size: 15px;
+  text-align: center;
+}
+
+.dropDown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropDown .navbtn {
+  cursor: pointer;
+}
+
+.navbar a:hover, .dropDown:hover .navbtn, .navbtn:focus {
+  border-color: red;
+}
+
+.item-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.item-content a {
+  @include text-background;
+  float: none;
+  display: block;
+  text-align: left;
+}
+
+.item-content a:hover {
+  background-color: #fff;
+}
+
+.show {
+  display: block;
+}
+
 .main {
   display: flex;
   justify-content: center;
@@ -116,3 +161,28 @@ body {
   object-fit: cover;
   border-radius: 50%;
 }
+
+// Gallery screen
+
+.group-members {
+  display: flex;
+}
+
+.group-image {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.members-block {
+  flex-direction: row;
+  width: 200px;
+  margin: 5px;
+}
+
+.members-image {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+} 

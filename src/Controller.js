@@ -5,7 +5,11 @@ export class Controller {
         this.view.onGameStart(this.startGame.bind(this));
         this.view.onGirlChoose(this.chooseGirl.bind(this));
         this.view.onShowLeaders(this.showLeaders.bind(this));
-        this.view.renderGreetings();
+        //this.view.renderGreetings();
+        //this.view.renderGallery(this.showGroup.bind(this)); 
+        // TODO Добавить возможность получать из View название группы.
+        this.view.onShowGroup(this.showGroup.bind(this));
+        this.view.renderGallery(this.model.getGroup());
     }
 
     startGame() {
@@ -27,5 +31,10 @@ export class Controller {
     showLeaders() {
         const leaders = this.model.getLeaders();
         this.view.renderLeaders(leaders);
+    }
+
+    showGroup(group) {
+        this.model.getGroup();
+        this.view.renderGallery(group);
     }
 }

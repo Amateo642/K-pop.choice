@@ -1,4 +1,4 @@
-export const db = [
+const girls = [
     {
         id: 0,
         name: 'Chung Ha',
@@ -88,4 +88,22 @@ export const db = [
             'assets/tzuyu-4.jpg',
         ],
     },
-]
+];
+
+const groups = [
+    {
+        name: 'Twice',
+        urls: [
+            'assets/twice-1.jpg',
+            'assets/twice-2.jpg',
+            'assets/twice-3.jpg',
+            'assets/twice-4.jpg',
+        ],
+        members: girls.filter(girl => girl.group === 'Twice'),
+    },
+];
+
+export const db = {
+    girls,
+    groups,
+};

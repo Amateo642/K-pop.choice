@@ -3,7 +3,7 @@ import {db} from './db';
 export class Model {
     constructor() {
         this.db = this.load();
-        this.girls = [...this.db];
+        this.girls = this.db.girls.slice();
         this.winners = [];
     }
 
@@ -45,11 +45,17 @@ export class Model {
     }
 
     getLeaders() {
-        return this.db.sort((girl1, girl2) => {
+        return this.db.girls.sort((girl1, girl2) => {
             if (girl1.voices > girl2.voices) return -1;
             if (girl1.voices === girl2.voices) return 0;
             if (girl1.voices < girl2.voices) return 1;
         }).slice(0, 3);
+    }
+
+    getGroup(name) {
+        return this.db.groups[0];
+            
+         // TODO вернуть конкретную группу по названию из массива.
     }
 
     load() {
@@ -58,10 +64,11 @@ export class Model {
         if (localdb) {
             return JSON.parse(localdb);
         } else {
-            return db.map(girl => {
+            db.girls = db.girls.map(girl => {
                 girl.voices = 0;
                 return girl;
             });
+            return db;
         }
     }
 
