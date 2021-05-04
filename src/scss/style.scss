@@ -14,13 +14,13 @@ body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
+/* header container */
+
 .header {
-  flex: 0 0 230px;
+  height: 230px;
   background: url("../assets/footer.jpg") center/ cover;
 }
 
@@ -69,21 +69,23 @@ body {
   display: block;
 }
 
+/* main container */
+
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 0 auto;
   min-height: 300px;
-   background: url("../assets/main-1.jpg") no-repeat bottom center / cover;
+  background: url("../assets/main-1.jpg") no-repeat bottom center / cover;
 }
 
 .main.gradient {
   background: linear-gradient(to right, #e3effb, #66599f);
 }
 
-.main > div {
+#app {
   text-align: center;
+  width: clamp(600px, 80%, 1200px);
 }
 
 .main p {
@@ -98,6 +100,17 @@ body {
   text-transform: uppercase;
   border: none;
   cursor: pointer;
+}
+
+/*.girl-info-block {
+
+}*/
+
+.girl-info-image {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 // game screen
@@ -164,7 +177,15 @@ body {
 
 // Gallery screen
 
-.group-members {
+.gallery > div {
+  margin: 0 auto;
+}
+
+.photo-gallery-nav {
+  width: clamp(300px, 80%, 800px);
+}
+
+/*.group-members {
   display: flex;
 }
 
@@ -185,4 +206,22 @@ body {
   width: 100px;
   object-fit: cover;
   border-radius: 50%;
-} 
+} */
+
+.group-members {
+  display: flex;
+  justify-content: space-between;
+}
+
+.photo-gallery .group-image {
+  margin: 0 auto;
+  height: 600px;
+  object-fit: cover;
+}
+
+.photo-gallery-nav .group-image {
+  margin: 10px;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}

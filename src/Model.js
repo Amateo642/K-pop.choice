@@ -7,6 +7,25 @@ export class Model {
         this.winners = [];
     }
 
+    getGirls() {
+        return this.db.girls;
+    }
+
+    /**
+     * TODO добавить в db.js группы, а группам id
+     */
+    getGroups() {
+        return this.db.groups;
+    }
+
+    getGirlById(id) {
+        return this.db.girls.id;
+    }
+
+    getGroupById(id) {
+        return this.db.groups.id;
+    }
+
     getCard() {
         return this.girls;
     }
@@ -55,7 +74,7 @@ export class Model {
     getGroup(name) {
         return this.db.groups[0];
             
-         // TODO вернуть конкретную группу по названию из массива.
+        // TODO вернуть конкретную группу по названию из массива.
     }
 
     load() {
