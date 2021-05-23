@@ -24,27 +24,71 @@ body {
   background: url("../assets/footer.jpg") center/ cover;
 }
 
-.navbar {
-  overflow: hidden;
+#nav {
+  height: 100%;
 }
 
-.navbar a {
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 100%;
+  width: 40%;
+}
+
+.navbar-item-link {
+  @include text-background;
+  display: block;
+  margin: 5px;
+  width: 150px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+
+  .dropdown-btn {
+    cursor: pointer;
+  } 
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  &.show .dropdown-content {
+    display: block;
+  }
+}
+
+.dropdown-content-item {
+  display: block;
+  
+}
+
+/*.navbar a {
   @include text-background;
   float: left;
   font-size: 15px;
   text-align: center;
-}
+}*/
 
-.dropDown {
+/*
+.dropdown {
   float: left;
   overflow: hidden;
 }
 
-.dropDown .navbtn {
+.dropdown .groupsDropdownBtn {
   cursor: pointer;
 }
 
-.navbar a:hover, .dropDown:hover .navbtn, .navbtn:focus {
+.navbar a:hover, .dropdown:hover .dropdown-link, .dropdown-link:focus {
   border-color: red;
 }
 
@@ -65,9 +109,34 @@ body {
   background-color: #fff;
 }
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
 .show {
   display: block;
 }
+
+*/
 
 /* main container */
 
@@ -75,7 +144,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 300px;
+  min-height: calc(100% - 230px);
   background: url("../assets/main-1.jpg") no-repeat bottom center / cover;
 }
 
@@ -102,6 +171,12 @@ body {
   cursor: pointer;
 }
 
+.main a {
+  @include text-background;
+  font-size: 25px;
+  text-decoration: none;
+}
+
 /*.girl-info-block {
 
 }*/
@@ -123,6 +198,7 @@ body {
 .card {
   flex: 1 0 auto;
   min-height: 400px;
+  width: 40%;
 }
 
 .card-info {
@@ -135,15 +211,16 @@ body {
 }
 
 .image-vs {
-  height: 300px;
+  height: 200px;
 }
 
 .image-card {
   height: 600px;
-  width: 600px;
+  width: 100%;
   object-fit: cover;
   cursor: pointer;
   border-radius: 5px;
+  object-position: center top;
 }
 
 // winner screen
@@ -217,6 +294,7 @@ body {
   margin: 0 auto;
   height: 600px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .photo-gallery-nav .group-image {
@@ -224,4 +302,5 @@ body {
   height: 200px;
   width: 200px;
   object-fit: cover;
+  border-radius: 10px;
 }

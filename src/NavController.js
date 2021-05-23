@@ -3,6 +3,7 @@ export class NavController {
         this.model = model;
         this.view = view;
         this.view.renderNavbar(this.model.getGroups(), this.model.getGirls());
+        //this.AppView.renderGreetings();
     }
 
 }

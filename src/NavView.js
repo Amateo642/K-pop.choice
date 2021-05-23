@@ -9,54 +9,91 @@ export class NavView {
 
         const home = document.createElement('div');
         home.className = 'navbar-item';
+        
+        const gameLink = document.createElement('a');
+        gameLink.innerText = 'Game';
+        gameLink.href = '#game';
+        gameLink.className = 'navbar-item-link';
+        home.appendChild(gameLink);
+
         navbar.appendChild(home);
 
-        const mainBtn = document.createElement('button');
-        mainBtn.innerText = 'Game';
-        home.appendChild(mainBtn);
+        const leaderBoard = document.createElement('div');//leaderboards
+        leaderBoard.className = 'navbar-item';
 
-        mainBtn.addEventListener('click', () => {
-            renderGreetings();
+        const leadersLink = document.createElement('a');
+        leadersLink.innerText = 'Leaderboard';
+        leadersLink.href = '#leaders';
+        leadersLink.className = 'navbar-item-link';
+        leaderBoard.appendChild(leadersLink);   
+        
+        navbar.appendChild(leaderBoard);
+
+        const bands = document.createElement('div');
+        bands.className = 'navbar-item';
+
+        const dropdown = document.createElement('div');
+        dropdown.className = 'dropdown';
+
+        const groupsDropdownBtn = document.createElement('button');
+        groupsDropdownBtn.innerHTML = 'Groups &#x25BC;';
+        groupsDropdownBtn.className = 'dropdown-btn navbar-item-link';
+
+        function outside(event) {
+            const isClickedOutside = !dropdown.contains(event.target);
+        
+            if (isClickedOutside) {
+                dropdown.classList.remove('show');
+                document.removeEventListener('click', outside);
+                console.log('Clicked outside');
+            }
+        }
+
+        groupsDropdownBtn.addEventListener('click', () => {
+            dropdown.classList.toggle('show');
+            if (dropdown.classList.contains('show')) {
+                document.addEventListener('click', outside);
+            } else {
+                document.removeEventListener('click', outside);
+            }
         });
 
-        const solo = document.createElement('div');
-        solo.className = 'navbar-item';
-        navbar.appendChild(solo);
+        dropdown.appendChild(groupsDropdownBtn);
 
-        const soloContent = document.createElement('div');
-        soloContent.className = 'item-content';
-        solo.appendChild(soloContent);
+        /*const arrowDown = document.createElement('i');
+        arrowDown.className = 'fa fa-caret-down';
+        groupsLink.appendChild(arrowDown);*/
 
-        const solo1 = document.createElement('a');
-        solo1.innerText = 'Chung Ha';
-        solo1.href = '#Chung Ha'; 
-        soloContent.appendChild(solo1);
+        const groupsDropdownContent = document.createElement('div');
+        groupsDropdownContent.className = 'dropdown-content';
 
-        const solo2 = document.createElement('a');
-        solo2.innerText = 'Jessi';
-        solo2.href = '#Jessi'; 
-        soloContent.appendChild(solo2);
+        groups.forEach(group => {
+            const band = document.createElement('a');
+            band.innerText = group.name;
+            band.href = `#group=${group.id}`;
+            band.className = 'dropdown-content-item navbar-item-link';
 
-        const soloBtn = document.createElement('button');
-        soloBtn.className = 'navbtn';
-        soloBtn.innerText = 'Solo';
-        solo.appendChild(soloBtn);
+            band.addEventListener('click', () => {
+                dropdown.classList.remove('show');
+            });
 
-        soloBtn.addEventListener('click', () => {
-            document.querySelector('dropDown').classList.toggle('show');
+            groupsDropdownContent.appendChild(band);
         });
 
-        const groups = document.createElement('div');
-        groups.className = 'navbar-item';
-        navbar.appendChild(groups);
+        dropdown.appendChild(groupsDropdownContent);
 
-        const groupsContent = document.createElement('div');
-        groupsContent.className = 'item-content';
-        groups.appendChild(groupsContent);
 
+
+        bands.appendChild(dropdown);
+
+        navbar.appendChild(bands);
+
+        /*
         const twice = document.createElement('a');
         twice.innerText = 'Twice';
-        twice.href = '#twice'; 
+        twice.href = '#twice'; // TODO #group=1; НЕ ЗАБУДЬ ДИМА ИЗ БУДУЩЕГО юзай MODEL  
+        // Строка формируется из шаблонной строки `${}`, 
+        // Для девочек ссылка будет #girl=1; 
         soloContent.appendChild(twice);
 
         const button = document.createElement('button');
@@ -65,20 +102,15 @@ export class NavView {
         button.addEventListener('click', () => {
             this.handleShowGroup();
         });
+       
+        const bandsBtn = document.createElement('button');
+        bandsBtn.className = 'navbtn';
+        bandsBtn.innerText = 'Groups';
+        bands.appendChild(bandsBtn);
 
-        const blackPink = document.createElement('a');
-        blackPink.innerText = 'BlackPink';
-        blackPink.href = '#BlackPink'; 
-        soloContent.appendChild(blackPink);
-
-        const groupsBtn = document.createElement('button');
-        groupsBtn.className = 'navbtn';
-        groupsBtn.innerText = 'Groups';
-        groups.appendChild(groupsBtn);
-
-        groupsBtn.addEventListener('click', () => {
+        bandsBtn.addEventListener('click', () => {
             document.querySelector('dropDown').classList.toggle('show');
-        });
+        });*/
 
         this.navEl.appendChild(navbar);
     }

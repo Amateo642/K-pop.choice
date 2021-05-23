@@ -19,11 +19,11 @@ export class Model {
     }
 
     getGirlById(id) {
-        return this.db.girls.id;
+        return this.db.girls.find(girl => girl.id === id);// TODO:2 use find for getGirlByID!!!!!!!!!!!!!!!!!!!!!!!
     }
 
     getGroupById(id) {
-        return this.db.groups.id;
+        return this.db.groups.find(group => group.id === id);
     }
 
     getCard() {
@@ -69,12 +69,6 @@ export class Model {
             if (girl1.voices === girl2.voices) return 0;
             if (girl1.voices < girl2.voices) return 1;
         }).slice(0, 3);
-    }
-
-    getGroup(name) {
-        return this.db.groups[0];
-            
-        // TODO вернуть конкретную группу по названию из массива.
     }
 
     load() {
