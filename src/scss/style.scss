@@ -56,9 +56,11 @@ body {
   } 
 
   .dropdown-content {
-    display: none;
     position: absolute;
+    display: none;
+    max-height: 400px;
     z-index: 1;
+    overflow-y: scroll;
   }
 
   &.show .dropdown-content {
@@ -70,73 +72,6 @@ body {
   display: block;
   
 }
-
-/*.navbar a {
-  @include text-background;
-  float: left;
-  font-size: 15px;
-  text-align: center;
-}*/
-
-/*
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .groupsDropdownBtn {
-  cursor: pointer;
-}
-
-.navbar a:hover, .dropdown:hover .dropdown-link, .dropdown-link:focus {
-  border-color: red;
-}
-
-.item-content {
-  display: none;
-  position: absolute;
-  z-index: 1;
-}
-
-.item-content a {
-  @include text-background;
-  float: none;
-  display: block;
-  text-align: left;
-}
-
-.item-content a:hover {
-  background-color: #fff;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-
-.show {
-  display: block;
-}
-
-*/
 
 /* main container */
 
@@ -171,7 +106,7 @@ body {
   cursor: pointer;
 }
 
-.main a {
+.main .link {
   @include text-background;
   font-size: 25px;
   text-decoration: none;
@@ -287,6 +222,17 @@ body {
 
 .group-members {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.girl-link {
+  text-decoration: none;
+}
+
+.girls-block {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -303,4 +249,51 @@ body {
   width: 200px;
   object-fit: cover;
   border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+
+}
+
+@media (max-width: 992px) {
+  
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .navbar-item-link {
+    height: 35px;
+  }
+
+  .main {
+    background: linear-gradient(to right, #e3effb, #66599f);
+  }
+  .leaders-block {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .navbar-item-link {
+    height: 35px;
+  }
+
+  #app {
+    width: 100%;
+  }
+
+  .leaders-block {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
 }

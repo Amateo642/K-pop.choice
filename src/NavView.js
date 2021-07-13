@@ -82,35 +82,39 @@ export class NavView {
 
         dropdown.appendChild(groupsDropdownContent);
 
-
-
         bands.appendChild(dropdown);
 
         navbar.appendChild(bands);
 
+        const girlsBlock = document.createElement('div');
+        girlsBlock.className = 'navbar-item';
+
+        const girlsLink = document.createElement('a');
+        girlsLink.innerText = 'Girls';
+        girlsLink.href = '#girls';
+        girlsLink.className = 'navbar-item-link';
+        girlsBlock.appendChild(girlsLink);
+
+        navbar.appendChild(girlsBlock);
+
+        const amateoBlock = document.createElement('div');
+        amateoBlock.className = 'navbar-item';
+
+        const amateoLink = document.createElement('a');
+        amateoLink.className = 'navbar-item-link';
+        amateoLink.href = "https://www.instagram.com/amateo.dk_official/?hl=ru";
+        amateoLink.innerText = 'by Amateo ©';
+        amateoBlock.appendChild(amateoLink);
+
+        navbar.appendChild(amateoBlock);
+
         /*
         const twice = document.createElement('a');
         twice.innerText = 'Twice';
-        twice.href = '#twice'; // TODO #group=1; НЕ ЗАБУДЬ ДИМА ИЗ БУДУЩЕГО юзай MODEL  
+        twice.href = '#twice'; // TODO #group=1; 
         // Строка формируется из шаблонной строки `${}`, 
         // Для девочек ссылка будет #girl=1; 
-        soloContent.appendChild(twice);
-
-        const button = document.createElement('button');
-        twice.appendChild(button);
-
-        button.addEventListener('click', () => {
-            this.handleShowGroup();
-        });
-       
-        const bandsBtn = document.createElement('button');
-        bandsBtn.className = 'navbtn';
-        bandsBtn.innerText = 'Groups';
-        bands.appendChild(bandsBtn);
-
-        bandsBtn.addEventListener('click', () => {
-            document.querySelector('dropDown').classList.toggle('show');
-        });*/
+        */
 
         this.navEl.appendChild(navbar);
     }

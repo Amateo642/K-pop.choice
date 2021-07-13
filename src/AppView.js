@@ -3,7 +3,7 @@ export class AppView {
         this.appEl = appEl;
     }
 
-    renderGallery(group) {
+    renderGroupGallery(group) {
         this.appEl.innerHTML = '';
         const gallery = document.createElement('div');
         gallery.className = 'gallery';
@@ -49,21 +49,87 @@ export class AppView {
             const memberBlock = document.createElement('div');
             memberBlock.className = 'girl-info-block';
 
+            const girlLinkBlock = document.createElement('a');
+            girlLinkBlock.className = 'girl-link';
+            girlLinkBlock.href = `#girl=${girl.id}`;
+
             const image = document.createElement('img');
             image.src = girl.url;
             image.className = 'girl-info-image animate__animated animate__flipInX';
-            memberBlock.appendChild(image); 
+            girlLinkBlock.appendChild(image); 
 
             const name = document.createElement('p');
             name.innerText = girl.name;
-            memberBlock.appendChild(name);
+            girlLinkBlock.appendChild(name);
 
             const voices = document.createElement('p');
             voices.innerText = girl.voices;
-            memberBlock.appendChild(voices);
+            girlLinkBlock.appendChild(voices);
+
+            memberBlock.appendChild(girlLinkBlock);
 
             groupMembers.appendChild(memberBlock);
         });
+
+        this.appEl.appendChild(gallery);
+
+        $(photoGallery).slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: photoGalleryNav,
+        });
+        $(photoGalleryNav).slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: photoGallery,
+            arrows: false,
+            dots: true,
+            centerMode: true,
+            focusOnSelect: true
+        });
+    }
+
+    renderGirlGallery(girl) {
+        this.appEl.innerHTML = '';
+        const gallery = document.createElement('div');
+        gallery.className = 'gallery';
+        document.querySelector('.main').className = 'main gradient';
+
+        console.log('girl', girl);
+
+        const name = document.createElement('p');
+        name.innerText = girl.name;
+        gallery.appendChild(name);
+
+        const photoGallery = document.createElement('div');
+        photoGallery.className = 'photo-gallery';
+
+        girl.urls.forEach(url => {
+            const wrapper = document.createElement('div');
+
+            const image = document.createElement('img');
+            image.src = url;
+            image.className = 'group-image';
+            wrapper.appendChild(image);
+
+            photoGallery.appendChild(wrapper);
+        });
+
+        gallery.appendChild(photoGallery);
+
+        const photoGalleryNav = document.createElement('div');
+        photoGalleryNav.className = 'photo-gallery-nav';
+
+        girl.urls.forEach(url => {
+            const image = document.createElement('img');
+            image.src = url;
+            image.className = 'group-image';
+            photoGalleryNav.appendChild(image);
+        });
+
+        gallery.appendChild(photoGalleryNav);
 
         this.appEl.appendChild(gallery);
 
@@ -91,6 +157,7 @@ export class AppView {
         this.appEl.appendChild(text);
 
         const gameLink = document.createElement('a');
+        gameLink.className = 'link';
         gameLink.innerText = 'Начать';
         gameLink.href = '#game';
         this.appEl.appendChild(gameLink);
@@ -238,6 +305,35 @@ export class AppView {
         });
 
          this.appEl.appendChild(leadersBlock);
+    }
+
+    renderGirls(girls) {
+        this.appEl.innerHTML = '';
+
+        const text = document.createElement('p');
+        text.innerText = 'Участницы конкурса';
+        this.appEl.appendChild(text);
+
+        const girlsBlock = document.createElement('div');
+        girlsBlock.className = 'girls-block';
+
+        girls.forEach(girl => {
+            const girlBlock = document.createElement('div');
+            girlBlock.className = 'girl-block';
+
+            const link = document.createElement('a');
+            link.className = 'girl-link';
+            link.href = `#girl=${girl.id}`;
+            girlBlock.appendChild(link);
+
+            const name = document.createElement('p');
+            name.innerText = girl.name;
+            link.appendChild(name);
+
+            girlsBlock.appendChild(girlBlock);
+        });
+
+        this.appEl.appendChild(girlsBlock);
     }
 
     onGameStart(cb) {

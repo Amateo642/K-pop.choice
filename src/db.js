@@ -592,7 +592,7 @@ const girls = [
         url: 'assets/yunaITZY-1.jpg',
         urls: [
             'assets/yunaITZY-1.jpg',
-            'assets/yuryunaITZYi-2.jpg',
+            'assets/yunaITZY-2.jpg',
             'assets/yunaITZY-3.jpg',
             'assets/yunaITZY-4.jpg',
         ],
@@ -677,7 +677,7 @@ const girls = [
     },
     {
         id: 52,
-        name: 'SoyeonT-ARA',
+        name: 'Soyeon',
         group: 'T-ara',
         born: '05.10.1987',
         url: 'assets/soyeonT-ARA-1.jpg',
@@ -1174,7 +1174,7 @@ const girls = [
         name: 'Kim Lip',
         group: 'Loona',
         born: '10.02.1999',
-        url: 'assets/somi-4.jpg',
+        url: 'assets/kim-lip-4.jpg',
         urls: [
             'assets/kim-lip-1.jpg',
             'assets/kim-lip-2.jpg',
@@ -1336,6 +1336,19 @@ const girls = [
             'assets/yooa-2.jpg',
             'assets/yooa-3.jpg',
             'assets/yooa-4.jpg',
+        ],
+    },
+    {
+        id: 103,
+        name: 'A-Yeon',
+        group: 'Solo',
+        born: '04.06.1990',
+        url: 'assets/ayeon-1.jpg',
+        urls: [
+            'assets/ayeon-5.jpg',
+            'assets/ayeon-2.jpg',
+            'assets/ayeon-3.jpg',
+            'assets/ayeon-4.jpg',
         ],
     },
 ];

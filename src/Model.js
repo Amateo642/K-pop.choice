@@ -3,6 +3,7 @@ import {db} from './db';
 export class Model {
     constructor() {
         this.db = this.load();
+        this.save();
         this.girls = this.db.girls.slice();
         this.winners = [];
     }
