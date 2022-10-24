@@ -20,7 +20,7 @@ export class Model {
     }
 
     getGirlById(id) {
-        return this.db.girls.find(girl => girl.id === id);// TODO:2 use find for getGirlByID!!!!!!!!!!!!!!!!!!!!!!!
+        return this.db.girls.find(girl => girl.id === id);
     }
 
     getGroupById(id) {
