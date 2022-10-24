@@ -83,7 +83,6 @@ export class Model {
 
     load() {
         const localdb = localStorage.getItem('db');
-        // Получили базу из ЛС если база есть, тогда вернуть ее, если ее нет (возвращает значение нулл)вернуть ДБ из файла.
         if (localdb) {
             return JSON.parse(localdb);
         } else {
