@@ -31,7 +31,8 @@ export class AppController {
                 // '#group=1' 
                 const id = +hash.slice(7);
                 const group = this.model.getGroupById(id);
-                this.view.renderGroupGallery(group);
+                const girls = this.model.getGirlsByGroupId(id)
+                this.view.renderGroupGallery(group, girls);
             } else if (hash === '#girls') {
                 this.showGirls();
             } else if (hash.startsWith('#girl=')) {
@@ -39,19 +40,23 @@ export class AppController {
                 const girl = this.model.getGirlById(id);
                 this.view.renderGirlGallery(girl);
             } else {
-                this.renderGreetings();
+                this.view.renderGreetings();
             } 
     }
 
     startGame() {
         if (this.model.isNextPairExist()) {
-            this.view.renderGame(this.model.getPair());
-        } else if (this.model.isNextRoundReady()) {
-            this.model.startNextRound();
-            this.view.renderGame(this.model.getPair());
+            this.renderGame();
+        } else if (this.model.isNextStageReady()) {
+            this.model.startNextStage();
+            this.renderGame();
         } else {
             this.view.renderWinner(this.model.getWinner());
         }
+    }
+
+    renderGame() {
+        this.view.renderGame(this.model.getPair(), this.model.currentStage, this.model.currentRound, this.model.roundsOfStage);
     }
 
     chooseGirl(winner) {

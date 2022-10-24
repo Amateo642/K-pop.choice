@@ -21,11 +21,66 @@ body {
 
 .header {
   height: 230px;
-  background: url("../assets/footer.jpg") center/ cover;
+  background: url("../assets/footer.jpg") bottom/ cover;
 }
 
 #nav {
   height: 100%;
+}
+
+.burger-menu {
+  display: none;
+  position: absolute;
+  height: 32px;
+  width: 40px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.burger-menu span{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+.burger-menu span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+.burger-menu span:nth-last-child(3)
+{
+  transform-origin: 0% 100%;
+}
+
+.header.active .burger-menu span
+{
+  transform: rotate(-45deg) translate(-1px, 0);
+  background: rgba(103, 90, 160, 0.6);
+}
+
+.header.active .burger-menu span:nth-last-child(2)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+.header.active .burger-menu span:nth-last-child(3)
+{
+  transform: rotate(45deg) translate(-1px, -3px);
 }
 
 .navbar {
@@ -124,10 +179,25 @@ body {
 }
 
 // game screen
-
 .image-wrapper {
   display: flex;
   align-items: center;
+  overflow: hidden;
+}
+
+.stages-wrapper {
+  @include text-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stages {
+  margin: 5px;
+}
+
+.span-stages {
+  font-size: 30px;
 }
 
 .card {
@@ -146,7 +216,9 @@ body {
 }
 
 .image-vs {
-  height: 200px;
+  width: 10%;
+  min-width: 100px;
+  max-width: 200px;
 }
 
 .image-card {
@@ -160,6 +232,19 @@ body {
 
 // winner screen
 
+.winner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.winner .card-info {
+  height: auto;
+  min-width: 60%;
+}
+
 .image-winner {
   height: 400px;
   width: 400px;
@@ -172,8 +257,9 @@ body {
 
 .leaders-block {
   display: flex;
-  justify-content: space-between;
-  width: 642px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .leader-block {
@@ -252,14 +338,23 @@ body {
 }
 
 @media (max-width: 1200px) {
-
+  .photo-gallery .group-image {
+    height: auto;
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media (max-width: 992px) {
-  
+
 }
 
 @media (max-width: 768px) {
+  .header {
+    height: 230px;
+    background: url("../assets/footer.jpg") right/ cover;
+  }
+
   .navbar {
     flex-direction: column;
     justify-content: flex-end;
@@ -274,26 +369,104 @@ body {
   }
   .leaders-block {
     flex-direction: column;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .leader-block {
+    justify-content: center;
+    align-items: center;
   }
 }
 
 @media (max-width: 576px) {
+  .header {
+    height: 40px;
+  }
+
+  .header.active {
+    height: 230px;
+  }
+
+  .burger-menu {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
   .navbar {
+    position: relative;
+    z-index: 1;
+    height: 85%;
+    width: 42%;
     flex-direction: column;
     justify-content: flex-end;
+    transform-origin: 0% 0%;
+    transform: translate(0, -200%);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  }
+
+  .header.active .navbar {
+    transform: translate(0, 0);
   }
 
   .navbar-item-link {
     height: 35px;
+    padding: 6px;
   }
 
   #app {
     width: 100%;
   }
 
-  .leaders-block {
+  .main {
+    min-height: 100%;
+  }
+
+  .image-wrapper {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 10%;
+    margin: 5px;
+  }
+  .card-info p {
+    margin: 5px;
+  }
+}
+
+ @media (max-width: 480px) {
+  .burger-menu {
+    display: block;
+  }
+
+  .navbar {
     flex-direction: column;
     justify-content: flex-end;
+    transform-origin: 0% 0%;
+    transform: translate(0, -200%);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
   }
+
+  .navbar-item-link {
+    height: 28px;
+    padding: 2px;
+  }
+
+  #app {
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  
 }

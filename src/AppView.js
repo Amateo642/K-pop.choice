@@ -3,7 +3,7 @@ export class AppView {
         this.appEl = appEl;
     }
 
-    renderGroupGallery(group) {
+    renderGroupGallery(group, girls) {
         this.appEl.innerHTML = '';
         const gallery = document.createElement('div');
         gallery.className = 'gallery';
@@ -45,7 +45,7 @@ export class AppView {
         groupMembers.className = 'group-members';
         gallery.appendChild(groupMembers);
         
-        group.members.forEach(girl => {
+        girls.forEach(girl => {
             const memberBlock = document.createElement('div');
             memberBlock.className = 'girl-info-block';
 
@@ -96,8 +96,6 @@ export class AppView {
         const gallery = document.createElement('div');
         gallery.className = 'gallery';
         document.querySelector('.main').className = 'main gradient';
-
-        console.log('girl', girl);
 
         const name = document.createElement('p');
         name.innerText = girl.name;
@@ -205,16 +203,35 @@ export class AppView {
         return card;   
     }
 
-    renderGame(pair) {
+    renderGame(pair, currentStage, currentRound, roundsOfStage) {
         this.appEl.innerHTML = '';
         const [girl1, girl2] = pair; 
         document.querySelector('.main').className = 'main gradient';
+
+        const stagesWrapper = document.createElement('div');
+        stagesWrapper.className = 'stages-wrapper';
+        this.appEl.appendChild(stagesWrapper);
+
+        const spanStage = document.createElement('span');
+        spanStage.className = 'stages span-stages';
+        spanStage.innerText = `Этап ${currentStage} `;
+        stagesWrapper.appendChild(spanStage);
+
+        const spanRound = document.createElement('span');
+        spanRound.className = 'rounds span-stages';
+        spanRound.innerText = `Раунд ${currentRound}`;
+        stagesWrapper.appendChild(spanRound);
+
+        const spanRoundsOfStages = document.createElement('span');
+        spanRoundsOfStages.className = 'rounds span-stages';
+        spanRoundsOfStages.innerText = `/${roundsOfStage}`;
+        stagesWrapper.appendChild(spanRoundsOfStages);
 
         const imageWrapper = document.createElement('div');
         imageWrapper.className = 'image-wrapper';
 
         const card1 = this.getCardBlock(girl1);
-        console.log(card1);
+
         card1.classList.add('card', 'animate__animated', 'animate__fadeInLeft', 'animate__delay-1s');
         imageWrapper.appendChild(card1);
 
@@ -259,10 +276,8 @@ export class AppView {
         text.innerText = 'Победитель!';
         this.appEl.appendChild(text);
 
-        console.log(winner);
-
         const card1 = this.getCardBlock(winner);
-        card1.classList.add('card', 'animate__animated', 'animate__backInUp', 'animate__delay-1s');
+        card1.classList.add('card', 'winner', 'animate__animated', 'animate__backInUp', 'animate__delay-1s');
         this.appEl.appendChild(card1);
 
         const button = document.createElement('button');
@@ -277,6 +292,8 @@ export class AppView {
     renderLeaders(leaders) {
         this.appEl.innerHTML = '';
 
+        document.querySelector('.main').className = 'main gradient';
+        
         const text = document.createElement('p');
         text.innerText = 'Текущие лидеры';
         this.appEl.appendChild(text);

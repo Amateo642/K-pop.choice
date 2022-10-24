@@ -6,15 +6,15 @@ export class Model {
         this.save();
         this.girls = this.db.girls.slice();
         this.winners = [];
+        this.currentStage = 1;
+        this.currentRound = 0;
+        this.roundsOfStage = Math.floor(this.girls.length / 2);
     }
 
     getGirls() {
         return this.db.girls;
     }
 
-    /**
-     * TODO добавить в db.js группы, а группам id
-     */
     getGroups() {
         return this.db.groups;
     }
@@ -27,11 +27,16 @@ export class Model {
         return this.db.groups.find(group => group.id === id);
     }
 
+    getGirlsByGroupId(id) {
+        return (this.getGirls()).filter(girl => girl.groupId === id);
+    }
+
     getCard() {
         return this.girls;
     }
 
     getPair() {
+        this.currentRound++;    
         return this.isNextPairExist() ? [this.girls[0], this.girls[1]] : undefined;
     }
 
@@ -41,7 +46,7 @@ export class Model {
             this.winners.push(winner);
             this.girls.splice(0,2);
             this.save();
-        } 
+        }
     }
 
     getWinner() {
@@ -52,24 +57,28 @@ export class Model {
         return this.girls.length > 1;
     }
 
-    isNextRoundReady() {
+    isNextStageReady() {
         return this.winners.length > 1 || this.girls.length > 0;
     }
 
-    startNextRound() {
+    startNextStage() {
         if (this.girls.length === 1) {
             this.winners.unshift(this.girls[0]);
         }
         this.girls = this.winners;
         this.winners = [];
+        this.currentStage++;
+        this.currentRound = 0;
+        this.roundsOfStage = Math.floor(this.girls.length / 2);
     }
 
     getLeaders() {
-        return this.db.girls.sort((girl1, girl2) => {
+        const girls = this.getGirls();
+        return girls.sort((girl1, girl2) => {
             if (girl1.voices > girl2.voices) return -1;
             if (girl1.voices === girl2.voices) return 0;
             if (girl1.voices < girl2.voices) return 1;
-        }).slice(0, 3);
+        }).slice(0, 30);
     }
 
     load() {
